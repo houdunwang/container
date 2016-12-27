@@ -193,7 +193,7 @@ class Base implements ArrayAccess {
 			return $parameter->getDefaultValue();
 		}
 
-		throw new Exception( '参数无默认值，无法实例化' );
+		throw new Exception( '参数无默认值' );
 	}
 
 	public function offsetExists( $key ) {
