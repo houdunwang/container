@@ -1,4 +1,4 @@
-<?php namespace houdunwang\container;
+<?php namespace houdunwang\container\build;
 
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
