@@ -47,7 +47,7 @@ class Base implements ArrayAccess
     /**
      * 单例服务
      *
-     * @param string $name 名称
+     * @param string $name   名称
      * @param mixed  $object 对象
      */
     public function instance($name, $object)
