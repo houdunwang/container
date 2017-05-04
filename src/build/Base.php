@@ -106,12 +106,30 @@ class Base implements ArrayAccess
     public function callFunction($function)
     {
         $reflectionFunction = new \ReflectionFunction($function);
-        $args
-                            = $this->getDependencies(
+
+        $args = $this->getDependencies(
             $reflectionFunction->getParameters()
         );
-
         return $reflectionFunction->invokeArgs($args);
+    }
+
+    /**
+     * 反射执行方法并实现依赖注入
+     *
+     * @param $class  类
+     * @param $method 方法
+     *
+     * @return mixed
+     */
+    public function callMethod($class, $method)
+    {
+        //反射方法实例
+        $reflectionMethod = new \ReflectionMethod($class, $method);
+        //解析方法参数
+        $args = $this->getDependencies($reflectionMethod->getParameters());
+
+        //生成类并执行方法
+        return $reflectionMethod->invokeArgs($this->build($class), $args);
     }
 
     /**
@@ -141,24 +159,6 @@ class Base implements ArrayAccess
         return $dependencies;
     }
 
-    /**
-     * 反射执行方法并实现依赖注入
-     *
-     * @param $class  类
-     * @param $method 方法
-     *
-     * @return mixed
-     */
-    public function callMethod($class, $method)
-    {
-        //反射方法实例
-        $reflectionMethod = new \ReflectionMethod($class, $method);
-        //解析方法参数
-        $args = $this->getDependencies($reflectionMethod->getParameters());
-
-        //生成类并执行方法
-        return $reflectionMethod->invokeArgs($this->build($class), $args);
-    }
 
     /**
      * 生成服务实例
