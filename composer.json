@@ -1,7 +1,6 @@
 {
   "name": "houdunwang/container",
   "description": "IOC服务容器管理组件",
-  "type": "project",
   "keywords": [
     "houdunwang",
     "hdphp",
