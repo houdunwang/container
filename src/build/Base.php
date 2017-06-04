@@ -68,15 +68,15 @@ class Base implements ArrayAccess
         if (isset($this->instances[$name])) {
             return $this->instances[$name];
         }
+
         //获得实现提供者
         $closure = $this->getClosure($name);
+
         //获取实例
         $object = $this->build($closure);
+
         //单例绑定
-        if (isset($this->bindings[$name]['force'])
-            && $this->bindings[$name]['force']
-            || $force
-        ) {
+        if (isset($this->bindings[$name]['force']) && $this->bindings[$name]['force'] || $force) {
             $this->instances[$name] = $object;
         }
 
@@ -92,8 +92,7 @@ class Base implements ArrayAccess
      */
     private function getClosure($name)
     {
-        return isset($this->bindings[$name]) ? $this->bindings[$name]['closure']
-            : $name;
+        return isset($this->bindings[$name]) ? $this->bindings[$name]['closure'] : $name;
     }
 
     /**
@@ -110,6 +109,7 @@ class Base implements ArrayAccess
         $args = $this->getDependencies(
             $reflectionFunction->getParameters()
         );
+
         return $reflectionFunction->invokeArgs($args);
     }
 
@@ -125,6 +125,7 @@ class Base implements ArrayAccess
     {
         //反射方法实例
         $reflectionMethod = new \ReflectionMethod($class, $method);
+
         //解析方法参数
         $args = $this->getDependencies($reflectionMethod->getParameters());
 
