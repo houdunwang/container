@@ -68,7 +68,6 @@ class Base implements ArrayAccess
         if (isset($this->instances[$name])) {
             return $this->instances[$name];
         }
-
         //获得实现提供者
         $closure = $this->getClosure($name);
 
